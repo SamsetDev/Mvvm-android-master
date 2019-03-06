@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.mvvm.sample"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def view_model_version = "1.1.0"
+
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.0'
+
+     /*
+     * Step 1: Add the paging library
+     */
+    implementation 'android.arch.paging:runtime:1.0.0'
+
+    /*
+     * Step 2: Adding ViewModel and Lifecycle
+     */
+    implementation "android.arch.lifecycle:extensions:$roomVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$roomVersion"
+    implementation "android.arch.lifecycle:viewmodel:$view_model_version"
+    implementation "com.android.support:multidex:$multiDex"
+
+
+    /*
+    * LIBRARY HEADER 6: DAGGER DEPENDENCY  *********************************************************
+    */
+    implementation "com.google.dagger:dagger:$rootProject.dagger"
+    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+
+
+
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}
