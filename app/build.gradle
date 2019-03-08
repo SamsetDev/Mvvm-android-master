@@ -52,6 +52,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.intercepter"
     implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.adapter"
 
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid"
+
 
     // Dagger
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"

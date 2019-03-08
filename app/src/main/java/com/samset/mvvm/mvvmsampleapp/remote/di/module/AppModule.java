@@ -10,6 +10,7 @@ import javax.inject.Singleton;
 import androidx.lifecycle.ViewModelProvider;
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -25,6 +26,13 @@ public class AppModule {
                 .build()
                 .create(GitHubService.class);
     }
+
+
+    @Provides
+    CompositeDisposable provideCompositeDisposable() {
+        return new CompositeDisposable();
+    }
+
 
     @Singleton
     @Provides
