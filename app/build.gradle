@@ -1,65 +1,64 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
+    buildToolsVersion '28.0.2'
+
     defaultConfig {
-        applicationId "com.mvvm.sample"
-        minSdkVersion 15
+        applicationId "com.samset.mvvm.mvvm_sample_app"
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
-    def view_model_version = "1.1.0"
-
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.0'
 
-     /*
-     * Step 1: Add the paging library
-     */
-    implementation 'android.arch.paging:runtime:1.0.0'
+    implementation "com.google.android.material:material:$support"
+    implementation "androidx.appcompat:appcompat:$support"
+    implementation "androidx.cardview:cardview:$support"
+    implementation "androidx.recyclerview:recyclerview:$support"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    implementation "androidx.legacy:legacy-support-v4:$support"
 
-    /*
-     * Step 2: Adding ViewModel and Lifecycle
-     */
-    implementation "android.arch.lifecycle:extensions:$roomVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$roomVersion"
-    implementation "android.arch.lifecycle:viewmodel:$view_model_version"
-    implementation "com.android.support:multidex:$multiDex"
+    // Arch
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$arch"
+    implementation "androidx.lifecycle:lifecycle-runtime:$arch"
+    implementation "androidx.lifecycle:lifecycle-extensions:$arch"
 
-
-    /*
-    * LIBRARY HEADER 6: DAGGER DEPENDENCY  *********************************************************
-    */
-    implementation "com.google.dagger:dagger:$rootProject.dagger"
-    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:converter-scalars:$rootProject.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.intercepter"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.adapter"
 
 
-
+    // Dagger
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
-repositories {
-    mavenCentral()
 }
