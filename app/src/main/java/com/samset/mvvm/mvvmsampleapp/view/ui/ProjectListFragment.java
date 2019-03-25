@@ -1,6 +1,7 @@
 package com.samset.mvvm.mvvmsampleapp.view.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import com.samset.mvvm.mvvmsampleapp.listeners.NetworkResponse;
 import com.samset.mvvm.mvvmsampleapp.remote.di.AppInjector;
 import com.samset.mvvm.mvvmsampleapp.remote.di.Injectable;
 import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project;
+import com.samset.mvvm.mvvmsampleapp.remote.service.model.ProjectResponse;
+import com.samset.mvvm.mvvmsampleapp.remote.service.repository.ProjectRepository;
 import com.samset.mvvm.mvvmsampleapp.view.adapter.ProjectAdapter;
 import com.samset.mvvm.mvvmsampleapp.view.callback.ProjectClickCallback;
 import com.samset.mvvm.mvvmsampleapp.view.viewmodel.ProjectListViewModel;
@@ -36,7 +39,8 @@ public class ProjectListFragment extends Fragment implements Injectable, Network
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
-
+    @Inject
+    ProjectRepository projectRepository;
 
 
     @Nullable
@@ -48,6 +52,7 @@ public class ProjectListFragment extends Fragment implements Injectable, Network
         binding.projectList.setAdapter(projectAdapter);
         binding.setIsLoading(true);
 
+       // Log.e("TAG"," isloading "+projectRepository.progresbar.get());
 
         return binding.getRoot();
     }
@@ -69,8 +74,8 @@ public class ProjectListFragment extends Fragment implements Injectable, Network
             public void onChanged(@Nullable List<Project> projects) {
                 if (projects != null) {
                     binding.setIsLoading(false);
-                    binding.nodata.setIsNodata(true);
-                    //projectAdapter.setProjectList(projects);
+                   // binding.nodata.setIsNodata(true);
+                    projectAdapter.setProjectList(projects);
                 }
             }
         });
