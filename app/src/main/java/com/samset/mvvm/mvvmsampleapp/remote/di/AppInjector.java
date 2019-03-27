@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.samset.mvvm.mvvmsampleapp.AppApplication;
 import com.samset.mvvm.mvvmsampleapp.remote.di.components.DaggerAppComponent;
 
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;

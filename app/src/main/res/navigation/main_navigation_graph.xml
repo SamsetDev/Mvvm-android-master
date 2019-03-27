@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/actionlist"
+    android:id="@+id/main_navigation_graph">
+
+
+    <fragment
+        android:id="@+id/actionlist"
+        android:name="com.samset.mvvm.mvvmsampleapp.view.ui.fragments.RepositoryListFragment"
+        android:label="@string/project_list"
+        tools:layout="@layout/base_recycler_fragment_view">
+
+        <action
+            android:id="@+id/action_Details"
+            app:destination="@id/actionlistDetails" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/actionlistDetails"
+        android:name="com.samset.mvvm.mvvmsampleapp.view.ui.fragments.DetailsFragment"
+        android:label="@string/project_details"
+        tools:layout="@layout/fragment_details">
+
+        <argument
+            android:name="repo_id"
+            android:defaultValue="2"
+            app:type="string" />
+
+    </fragment>
+
+</navigation>

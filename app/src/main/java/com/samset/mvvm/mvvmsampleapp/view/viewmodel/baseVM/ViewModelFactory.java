@@ -1,6 +1,8 @@
-package com.samset.mvvm.mvvmsampleapp.view.viewmodel;
+package com.samset.mvvm.mvvmsampleapp.view.viewmodel.baseVM;
 
 import com.samset.mvvm.mvvmsampleapp.remote.di.ViewModelSubComponent;
+import com.samset.mvvm.mvvmsampleapp.view.viewmodel.ProjectListViewModel;
+import com.samset.mvvm.mvvmsampleapp.view.viewmodel.ProjectViewModel;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,11 +16,12 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class ProjectViewModelFactory implements ViewModelProvider.Factory {
+public class ViewModelFactory implements ViewModelProvider.Factory {
+
     private final ArrayMap<Class, Callable<? extends ViewModel>> creators;
 
     @Inject
-    public ProjectViewModelFactory(ViewModelSubComponent viewModelSubComponent) {
+    public ViewModelFactory(ViewModelSubComponent viewModelSubComponent) {
         creators = new ArrayMap<>();
 
         // View models cannot be injected directly because they won't be bound to the owner's view model scope.

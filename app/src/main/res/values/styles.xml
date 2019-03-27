@@ -20,7 +20,7 @@
 
     <style name="Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="backgroundTint">@color/gray</item> <!-- ?attr/colorPrimaryDark -->
+        <item name="backgroundTint">@color/gray</item>
     </style>
 
     <style name="TextButton" parent="Widget.MaterialComponents.Button.TextButton">
