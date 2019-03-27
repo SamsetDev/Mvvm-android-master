@@ -6,8 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.test.mvvmsampleapp.R;
-import com.example.test.mvvmsampleapp.databinding.FragmentProjectDetailsBinding;
-import com.samset.mvvm.mvvmsampleapp.listeners.NetworkResponse;
+import com.example.test.mvvmsampleapp.databinding.FragmentDetailsBinding;
 import com.samset.mvvm.mvvmsampleapp.remote.di.Injectable;
 import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project;
 import com.samset.mvvm.mvvmsampleapp.view.viewmodel.ProjectViewModel;
@@ -24,7 +23,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 public class ProjectFragment extends Fragment implements Injectable {
     private static final String KEY_PROJECT_ID = "project_id";
-    private FragmentProjectDetailsBinding binding;
+    private FragmentDetailsBinding binding;
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -35,7 +34,7 @@ public class ProjectFragment extends Fragment implements Injectable {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         // Inflate this data binding layout
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_project_details, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container, false);
 
         // Create and set the adapter for the RecyclerView.
         return (View) binding.getRoot();

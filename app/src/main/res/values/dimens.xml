@@ -8,4 +8,21 @@
     <dimen name="project_text">16sp</dimen>
     <dimen name="logo_width">150dp</dimen>
     <dimen name="logo_height">125dp</dimen>
+
+    <dimen name="_20sdp">20sp</dimen>
+    <dimen name="_18sdp">18sp</dimen>
+
+    <dimen name="_28sdp">28sp</dimen>
+    <dimen name="_23sdp">23sp</dimen>
+    <dimen name="_30sdp">30sp</dimen>
+    <dimen name="_35sdp">35sp</dimen>
+
+    <dimen name="_40sdp">40sp</dimen>
+    <dimen name="_45sdp">45sp</dimen>
+
+
+    <dimen name="_16sdp">26sp</dimen>
+    <dimen name="_15sdp">15sp</dimen>
+    <dimen name="_25sdp">25sp</dimen>
+    <dimen name="_10sdp">10sp</dimen>
 </resources>

@@ -16,4 +16,10 @@
     <string name="project_description">Project Description</string>
     <string name="open_issues">Open Issues</string>
     <string name="loading_project">Loading Project ...</string>
+
+    <string name="retry_request">Retry</string>
+    <string name="connection_error">No Internet</string>
+    <string name="internal_error">Internal server error</string>
+    <string name="data_not_found">Data Not Found</string>
+
 </resources>

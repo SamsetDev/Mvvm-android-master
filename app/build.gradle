@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
 
 android {
     compileSdkVersion 28
@@ -52,6 +55,14 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.intercepter"
     implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.adapter"
 
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid"
+
+    // code generator for view
+    implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+
 
     // Dagger
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
@@ -61,4 +72,8 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
 
     testImplementation 'junit:junit:4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

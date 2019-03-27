@@ -5,9 +5,7 @@ import android.app.Application;
 import android.os.Bundle;
 
 import com.samset.mvvm.mvvmsampleapp.AppApplication;
-import com.samset.mvvm.mvvmsampleapp.remote.di.components.AppComponent;
 import com.samset.mvvm.mvvmsampleapp.remote.di.components.DaggerAppComponent;
-import com.samset.mvvm.mvvmsampleapp.remote.di.module.NetworkModule;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;

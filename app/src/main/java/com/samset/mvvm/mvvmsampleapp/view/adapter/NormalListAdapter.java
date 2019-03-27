@@ -15,14 +15,14 @@ import com.samset.mvvm.mvvmsampleapp.view.callback.ProjectClickCallback;
 import java.util.List;
 import java.util.Objects;
 
-public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
+public class NormalListAdapter extends RecyclerView.Adapter<NormalListAdapter.ProjectViewHolder> {
 
     List<? extends Project> projectList;
 
     @Nullable
     private final ProjectClickCallback projectClickCallback;
 
-    public ProjectAdapter(@Nullable ProjectClickCallback projectClickCallback) {
+    public NormalListAdapter(@Nullable ProjectClickCallback projectClickCallback) {
         this.projectClickCallback = projectClickCallback;
     }
 
@@ -34,7 +34,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
                 public int getOldListSize() {
-                    return ProjectAdapter.this.projectList.size();
+                    return NormalListAdapter.this.projectList.size();
                 }
 
                 @Override
@@ -44,7 +44,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    return ProjectAdapter.this.projectList.get(oldItemPosition).id ==
+                    return NormalListAdapter.this.projectList.get(oldItemPosition).id ==
                             projectList.get(newItemPosition).id;
                 }
 
