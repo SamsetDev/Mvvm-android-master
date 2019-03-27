@@ -9,8 +9,9 @@ package com.samset.mvvm.mvvmsampleapp.remote.vo
  */
 
 
-enum class Status {
+enum class UI_STATUS {
     SUCCESS,
-    ERROR,
-    LOADING
+    LOADING,
+    NETWORK_ERROR,
+    SERVER_ERROR
 }

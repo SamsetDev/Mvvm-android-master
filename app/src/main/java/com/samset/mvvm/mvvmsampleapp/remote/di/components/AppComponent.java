@@ -26,10 +26,8 @@ public interface AppComponent {
 
         AppComponent build();
 
-        //NetworkResponse getNetwork();
     }
 
     void inject(AppApplication appApplication);
 
-    //void inject(NetworkResponse networkResponse);
 }

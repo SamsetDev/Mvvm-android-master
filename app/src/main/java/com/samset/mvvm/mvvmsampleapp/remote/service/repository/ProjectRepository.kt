@@ -1,88 +1,45 @@
 package com.samset.mvvm.mvvmsampleapp.remote.service.repository
 
-import androidx.databinding.ObservableField
-
-import com.samset.mvvm.mvvmsampleapp.remote.ResponseObserver
-import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project
-import com.samset.mvvm.mvvmsampleapp.remote.vo.Resource
-
-import io.reactivex.android.schedulers.AndroidSchedulers
-
-import javax.inject.Inject
-import javax.inject.Singleton
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.samset.mvvm.mvvmsampleapp.remote.ResponseObserver
+import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project
+import com.samset.mvvm.mvvmsampleapp.remote.vo.UI_STATUS
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
 @Singleton
 class ProjectRepository
 @Inject
 constructor(private val gitHubService: GitHubService, private val disposable: CompositeDisposable) {
 
-    //lateinit var progresbar: ObservableField<Boolean>()
-     public var success : ObservableField<String>
-    public var progresbar: ObservableField<Boolean>
 
-    init {
-        progresbar = ObservableField<Boolean>()
-        success = ObservableField<String>()
-    }
+    fun getProjectListWithErrorHandle(userId: String,data:MutableLiveData<ArrayList<Project>>, status: MutableLiveData<UI_STATUS>){
 
-    fun getProjectList(userId: String): LiveData<List<Project>> {
-        val data = MutableLiveData<List<Project>>()
-
-        progresbar.set(true)
-        success.set("Loading..")
+        status.value=UI_STATUS.LOADING
         gitHubService.getProjectList(userId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : ResponseObserver<Response<List<Project>>>(disposable) {
+                .subscribe(object : ResponseObserver<Response<ArrayList<Project>>>(disposable) {
+
                     override fun onNetworkError(e: Throwable) {
-                        //networkResponse.onNetworkError()
-                        progresbar.set(false)
+                        status.value=UI_STATUS.NETWORK_ERROR
                     }
 
                     override fun onServerError(e: Throwable, code: Int) {
-                        //networkResponse.onServerError()
-                        progresbar.set(false)
+                        status.value=UI_STATUS.SERVER_ERROR
                     }
 
-                    override fun onNext(response: Response<List<Project>>) {
-                        progresbar.set(false)
-                        success.set("Result")
-                        data.value = response.body()
-
+                    override fun onNext(response: Response<ArrayList<Project>>) {
+                        status.value=UI_STATUS.SUCCESS
+                        data.postValue(response.body())
                     }
                 })
 
-        return data
-    }
-
-    fun getProjectListWithErrorHandle(userId: String): LiveData<Resource<List<Project>>> {
-        val data = MutableLiveData<Resource<List<Project>>>()
-       // val error = MutableLiveData<Throwable>()
-
-        gitHubService.getProjectList(userId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : ResponseObserver<Response<List<Project>>>(disposable) {
-
-                    override fun onNetworkError(e: Throwable) {
-                        data.setValue(Resource.error(e.localizedMessage.toString()))
-                    }
-
-                    override fun onServerError(e: Throwable, code: Int) {
-                        data.setValue(Resource.error(e.localizedMessage.toString()))
-                    }
-
-                    override fun onNext(response: Response<List<Project>>) {
-                        //data.postValue(response.body())
-                        data.setValue(Resource.success(response.body()))
-                    }
-                })
-
-        return data
     }
 
     fun getProjectDetails(userID: String, projectName: String): LiveData<Project> {

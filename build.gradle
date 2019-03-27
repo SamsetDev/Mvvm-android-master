@@ -38,6 +38,7 @@ ext {
     retrofit         = "2.4.0"
     constraintLayout = "1.1.0"
     dagger_version   = "2.15"
+    butterKnifeVersion = '8.8.1'
 
     okHttp          = '3.10.0'
     intercepter     = '3.4.1'

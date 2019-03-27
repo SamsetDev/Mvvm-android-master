@@ -9,20 +9,24 @@ package com.samset.mvvm.mvvmsampleapp.remote.vo
  */
 
 
-data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
+data class Resource<out T>(val status: UI_STATUS, val data: T?, val message: String?) {
 
     companion object {
 
         fun <T> success(data: T?): Resource<T> {
-            return Resource(Status.SUCCESS, data, null)
+            return Resource(UI_STATUS.SUCCESS, data, null)
         }
 
-        fun <T> error(msg: String): Resource<T> {
-            return Resource(Status.ERROR, null, msg)
+        fun <T> serverError(msg: String): Resource<T> {
+            return Resource(UI_STATUS.SERVER_ERROR, null, msg)
+        }
+
+        fun <T> networkError(msg: String): Resource<T> {
+            return Resource(UI_STATUS.NETWORK_ERROR, null, msg)
         }
 
         fun <T> loading(data: T?): Resource<T> {
-            return Resource(Status.LOADING, data, null)
+            return Resource(UI_STATUS.LOADING, data, null)
         }
 
     }
