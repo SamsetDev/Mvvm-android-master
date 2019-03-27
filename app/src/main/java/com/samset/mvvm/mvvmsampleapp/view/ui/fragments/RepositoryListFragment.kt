@@ -1,4 +1,4 @@
-package com.samset.mvvm.mvvmsampleapp.view.ui
+package com.samset.mvvm.mvvmsampleapp.view.ui.fragments
 
 /**
  * Copyright (C) Mvvm-android-master - All Rights Reserved
@@ -14,6 +14,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.example.test.mvvmsampleapp.R
 import com.samset.mvvm.mvvmsampleapp.remote.di.Injectable
 import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project
@@ -25,7 +26,7 @@ import com.samset.mvvm.mvvmsampleapp.view.viewmodel.ProjectListViewModel
 import java.util.*
 import javax.inject.Inject
 
-class ProjectListFragment2 : BaseFragment<Project>(), Injectable {
+class RepositoryListFragment : BaseFragment<Project>(), Injectable {
 
 
     private lateinit var viewModel: ProjectListViewModel
@@ -101,9 +102,23 @@ class ProjectListFragment2 : BaseFragment<Project>(), Injectable {
 
     private val projectClickCallback = ProjectClickCallback { project ->
         if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
-            (activity as MainActivity).show(project)
+           // (activity as MainActivity).show(project)
+            actionNavigate(project.name)
         }
     }
+
+
+    private fun actionNavigate(id:String) {
+
+        val action = RepositoryListFragmentDirections.action_Details()
+        action.setRepo_id(id)
+        findNavController().navigate(action)
+
+
+    }
+
+
+
 
 
     companion object {

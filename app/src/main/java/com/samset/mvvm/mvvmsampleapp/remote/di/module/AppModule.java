@@ -1,11 +1,9 @@
 package com.samset.mvvm.mvvmsampleapp.remote.di.module;
 
 import com.google.gson.Gson;
-import com.samset.mvvm.mvvmsampleapp.listeners.NetworkResponse;
 import com.samset.mvvm.mvvmsampleapp.remote.di.ViewModelSubComponent;
 import com.samset.mvvm.mvvmsampleapp.remote.service.repository.GitHubService;
-import com.samset.mvvm.mvvmsampleapp.remote.service.repository.ProjectRepository;
-import com.samset.mvvm.mvvmsampleapp.view.viewmodel.ProjectViewModelFactory;
+import com.samset.mvvm.mvvmsampleapp.view.viewmodel.baseVM.ViewModelFactory;
 
 import javax.inject.Singleton;
 
@@ -49,7 +47,7 @@ public class AppModule {
     ViewModelProvider.Factory provideViewModelFactory(
             ViewModelSubComponent.Builder viewModelSubComponent) {
 
-        return new ProjectViewModelFactory(viewModelSubComponent.build());
+        return new ViewModelFactory(viewModelSubComponent.build());
     }
 
 }

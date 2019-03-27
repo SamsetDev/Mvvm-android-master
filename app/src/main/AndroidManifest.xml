@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.samset.mvvm.mvvmsampleapp.view.ui.MainActivity">
+        <activity android:name="com.samset.mvvm.mvvmsampleapp.view.ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

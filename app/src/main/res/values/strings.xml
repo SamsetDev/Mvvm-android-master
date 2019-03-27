@@ -5,6 +5,8 @@
     <string name="project_name">Name of the project</string>
     <string name="google_github_projects">Google GitHub Projects</string>
     <string name="project_list">Project List</string>
+    <string name="project_details">Project Details</string>
+    <string name="detailsBundle">details</string>
     <string name="languages">Languages: %s</string>
     <string name="watchers">Watchers: %s</string>
     <string name="openIssues">Open Issues: %s</string>

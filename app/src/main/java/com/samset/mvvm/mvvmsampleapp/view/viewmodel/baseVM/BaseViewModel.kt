@@ -1,4 +1,4 @@
-package com.samset.mvvm.mvvmsampleapp.view.viewmodel.base
+package com.samset.mvvm.mvvmsampleapp.view.viewmodel.baseVM
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
