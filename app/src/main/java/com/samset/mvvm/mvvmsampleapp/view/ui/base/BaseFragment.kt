@@ -16,12 +16,12 @@ import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.annotation.Nullable
 import androidx.annotation.StringRes
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.mvvmsampleapp.R
-import com.google.android.material.button.MaterialButton
 import com.samset.mvvm.mvvmsampleapp.utils.CommonUtils
 
 
@@ -40,7 +40,7 @@ abstract class BaseFragment<V> : Fragment(), BaseView, View.OnClickListener {
 
     lateinit var mMainContainer: View
 
-    lateinit var btnRetry: MaterialButton
+    lateinit var btnRetry: AppCompatButton
 
     lateinit var mRecyclerView: RecyclerView
 

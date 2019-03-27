@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs'
 
 
 android {
@@ -35,6 +36,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    // suport family
     implementation "com.google.android.material:material:$support"
     implementation "androidx.appcompat:appcompat:$support"
     implementation "androidx.cardview:cardview:$support"
@@ -42,12 +44,20 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
     implementation "androidx.legacy:legacy-support-v4:$support"
 
-    // Arch
+    //Jetpack Arch family
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$arch"
     implementation "androidx.lifecycle:lifecycle-runtime:$arch"
     implementation "androidx.lifecycle:lifecycle-extensions:$arch"
 
-    // Retrofit
+    // Jetpack navigation family for kotlin
+    implementation "android.arch.navigation:navigation-fragment-ktx:$rootProject.navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$rootProject.navigation"
+
+    // Jetpack navigation family for Java
+   // implementation "androidx.navigation:navigation-fragment:$rootProject.navigation"
+   // implementation "androidx.navigation:navigation-ui:$rootProject.navigation"
+
+    // Retrofit family
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
     implementation "com.squareup.retrofit2:converter-scalars:$rootProject.retrofit"
@@ -55,16 +65,13 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.intercepter"
     implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.adapter"
 
+    
+    // Rx family
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid"
 
-    // code generator for view
-    implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
 
-
-
-    // Dagger
+    // Dagger family
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger:$dagger_version"

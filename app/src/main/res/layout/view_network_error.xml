@@ -20,16 +20,14 @@
         android:textSize="@dimen/_20sdp" />
 
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/retry"
-        style="@style/Button"
+        android:visibility="gone"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
         android:text="@string/retry_request"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        app:cornerRadius="16dp" />
-
+        android:textAllCaps="false" />
 
 </LinearLayout>
