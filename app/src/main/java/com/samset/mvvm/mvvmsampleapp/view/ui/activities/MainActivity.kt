@@ -3,9 +3,7 @@ package com.samset.mvvm.mvvmsampleapp.view.ui.activities
 import android.os.Bundle
 
 import com.example.test.mvvmsampleapp.R
-import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project
 import com.samset.mvvm.mvvmsampleapp.view.ui.base.BaseActivity
-import com.samset.mvvm.mvvmsampleapp.view.ui.fragments.DetailsFragment
 
 import javax.inject.Inject
 

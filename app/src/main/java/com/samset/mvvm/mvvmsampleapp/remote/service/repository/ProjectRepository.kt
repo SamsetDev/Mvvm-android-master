@@ -2,7 +2,7 @@ package com.samset.mvvm.mvvmsampleapp.remote.service.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.samset.mvvm.mvvmsampleapp.remote.ResponseObserver
-import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project
+import com.samset.mvvm.mvvmsampleapp.view.model.Project
 import com.samset.mvvm.mvvmsampleapp.utils.UI_STATUS
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

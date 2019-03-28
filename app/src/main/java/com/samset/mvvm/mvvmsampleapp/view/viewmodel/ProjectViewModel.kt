@@ -4,7 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project
+import com.samset.mvvm.mvvmsampleapp.view.model.Project
 import com.samset.mvvm.mvvmsampleapp.remote.service.repository.ProjectRepository
 import com.samset.mvvm.mvvmsampleapp.utils.CommonUtils.REPO_USERNAME
 import com.samset.mvvm.mvvmsampleapp.view.viewmodel.baseVM.BaseViewModel

@@ -18,7 +18,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.test.mvvmsampleapp.R
 import com.samset.mvvm.mvvmsampleapp.remote.di.Injectable
-import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project
+import com.samset.mvvm.mvvmsampleapp.view.model.Project
 import com.samset.mvvm.mvvmsampleapp.utils.UI_STATUS
 import com.samset.mvvm.mvvmsampleapp.view.adapter.WithBaseAdapter
 import com.samset.mvvm.mvvmsampleapp.view.callback.ProjectClickCallback

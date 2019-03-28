@@ -1,4 +1,4 @@
-package com.samset.mvvm.mvvmsampleapp.remote.service.model;
+package com.samset.mvvm.mvvmsampleapp.view.model;
 
 import java.util.Date;
 

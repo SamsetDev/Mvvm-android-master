@@ -2,7 +2,7 @@ package com.samset.mvvm.mvvmsampleapp.view.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project
+import com.samset.mvvm.mvvmsampleapp.view.model.Project
 import com.samset.mvvm.mvvmsampleapp.remote.service.repository.ProjectRepository
 import com.samset.mvvm.mvvmsampleapp.utils.CommonUtils.REPO_USERNAME
 import com.samset.mvvm.mvvmsampleapp.view.viewmodel.baseVM.BaseViewModel

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.test.mvvmsampleapp.R;
 import com.example.test.mvvmsampleapp.databinding.ProjectListItemBinding;
-import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project;
+import com.samset.mvvm.mvvmsampleapp.view.model.Project;
 import com.samset.mvvm.mvvmsampleapp.view.callback.ProjectClickCallback;
 
 import java.util.List;
