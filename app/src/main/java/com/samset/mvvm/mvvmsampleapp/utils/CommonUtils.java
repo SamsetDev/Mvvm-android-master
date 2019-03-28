@@ -16,6 +16,10 @@ import android.provider.Settings;
 
 public class CommonUtils {
 
+
+    public static String REPO_USERNAME="";
+
+    public static final int TIMEOUT_IN_SEC = 15;
     /*    check internet connection */
     public static boolean isNetworkConnected(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

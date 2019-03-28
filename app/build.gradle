@@ -14,6 +14,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -57,7 +58,18 @@ dependencies {
    // implementation "androidx.navigation:navigation-fragment:$rootProject.navigation"
    // implementation "androidx.navigation:navigation-ui:$rootProject.navigation"
 
+
+    implementation "com.jakewharton:butterknife:$rootProject.butterKnife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnife"
+
+
+    implementation "com.facebook.stetho:stetho:$rootProject.facebook"
+    implementation "com.facebook.stetho:stetho-okhttp3:$rootProject.facebook"
+
+
+    implementation "com.android.support:multidex:$multiDex"
     // Retrofit family
+    implementation 'com.google.guava:guava:19.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
     implementation "com.squareup.retrofit2:converter-scalars:$rootProject.retrofit"

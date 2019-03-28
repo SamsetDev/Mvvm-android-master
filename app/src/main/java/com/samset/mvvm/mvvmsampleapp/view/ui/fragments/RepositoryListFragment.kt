@@ -9,6 +9,7 @@ package com.samset.mvvm.mvvmsampleapp.view.ui.fragments
  */
 
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
@@ -18,15 +19,15 @@ import androidx.navigation.fragment.findNavController
 import com.example.test.mvvmsampleapp.R
 import com.samset.mvvm.mvvmsampleapp.remote.di.Injectable
 import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project
-import com.samset.mvvm.mvvmsampleapp.remote.vo.UI_STATUS
+import com.samset.mvvm.mvvmsampleapp.utils.UI_STATUS
 import com.samset.mvvm.mvvmsampleapp.view.adapter.WithBaseAdapter
 import com.samset.mvvm.mvvmsampleapp.view.callback.ProjectClickCallback
-import com.samset.mvvm.mvvmsampleapp.view.ui.base.BaseFragment
+import com.samset.mvvm.mvvmsampleapp.view.ui.base.BaseRecyclerviewFragment
 import com.samset.mvvm.mvvmsampleapp.view.viewmodel.ProjectListViewModel
 import java.util.*
 import javax.inject.Inject
 
-class RepositoryListFragment : BaseFragment<Project>(), Injectable {
+class RepositoryListFragment : BaseRecyclerviewFragment<Project>(), Injectable {
 
 
     private lateinit var viewModel: ProjectListViewModel
@@ -78,6 +79,9 @@ class RepositoryListFragment : BaseFragment<Project>(), Injectable {
                 UI_STATUS.SUCCESS -> {
                     onShowContent(mRecyclerView)
                 }
+                UI_STATUS.NO_DATA -> {
+                   showNoData()
+                }
                 UI_STATUS.LOADING -> {
                     showLoading()
                 }
@@ -111,17 +115,11 @@ class RepositoryListFragment : BaseFragment<Project>(), Injectable {
     private fun actionNavigate(id:String) {
 
         val action = RepositoryListFragmentDirections.action_Details()
-        action.setRepo_id(id)
+        action.setRepo_id(id.toString())
+        Log.e("TAG"," sender id "+id)
         findNavController().navigate(action)
 
 
     }
 
-
-
-
-
-    companion object {
-        val TAG = "ProjectListFragment"
-    }
 }

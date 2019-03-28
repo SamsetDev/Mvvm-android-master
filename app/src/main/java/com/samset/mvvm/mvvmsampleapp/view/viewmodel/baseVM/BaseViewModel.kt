@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.samset.mvvm.mvvmsampleapp.remote.service.repository.ProjectRepository
-import com.samset.mvvm.mvvmsampleapp.remote.vo.UI_STATUS
+import com.samset.mvvm.mvvmsampleapp.utils.UI_STATUS
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 

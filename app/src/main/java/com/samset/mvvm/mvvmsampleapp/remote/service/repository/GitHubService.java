@@ -18,6 +18,9 @@ public interface GitHubService {
     @GET("users/{user}/repos")
     Observable<Response<ArrayList<Project>>> getProjectList(@Path("user") String user);
 
+
     @GET("/repos/{user}/{reponame}")
-    Call<Project> getProjectDetails(@Path("user") String user, @Path("reponame") String projectName);
+    Observable<Response<Project>> getProjectDetails(@Path("user") String user, @Path("reponame") String projectName);
+
+
 }

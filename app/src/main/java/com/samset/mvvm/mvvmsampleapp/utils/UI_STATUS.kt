@@ -1,4 +1,4 @@
-package com.samset.mvvm.mvvmsampleapp.remote.vo
+package com.samset.mvvm.mvvmsampleapp.utils
 
 /**
  * Copyright (C) Mvvm-android-master - All Rights Reserved
@@ -12,6 +12,7 @@ package com.samset.mvvm.mvvmsampleapp.remote.vo
 enum class UI_STATUS {
     SUCCESS,
     LOADING,
+    NO_DATA,
     NETWORK_ERROR,
     SERVER_ERROR
 }

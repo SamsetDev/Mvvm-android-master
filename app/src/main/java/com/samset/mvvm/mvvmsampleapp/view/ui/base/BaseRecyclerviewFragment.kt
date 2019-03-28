@@ -21,8 +21,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import com.example.test.mvvmsampleapp.R
 import com.samset.mvvm.mvvmsampleapp.utils.CommonUtils
 
@@ -36,9 +34,15 @@ import com.samset.mvvm.mvvmsampleapp.utils.CommonUtils
  */
 
 
-abstract class BaseFragment : Fragment(), BaseView, View.OnClickListener {
+abstract class BaseRecyclerviewFragment<V> : Fragment(), BaseView, View.OnClickListener {
+
+    lateinit var title: TextView
+
+    lateinit var mMainContainer: View
 
     lateinit var btnRetry: AppCompatButton
+
+    lateinit var mRecyclerView: RecyclerView
 
     lateinit var mEmptyview: LinearLayout
 
@@ -48,11 +52,11 @@ abstract class BaseFragment : Fragment(), BaseView, View.OnClickListener {
 
     lateinit var mServerErrorView: LinearLayout
 
+    lateinit var mMessageView: AppCompatTextView
+
     private lateinit var mActivity: BaseActivity
-
-    private val TAG = BaseFragment::class.java.getSimpleName()
-
-    private lateinit var munbinder: Unbinder
+    private lateinit var mDataList: ArrayList<V>
+    private val TAG = BaseRecyclerviewFragment::class.java.getSimpleName()
 
 
     @LayoutRes
@@ -74,21 +78,34 @@ abstract class BaseFragment : Fragment(), BaseView, View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(getFragmentLayout(), container, false)
-        munbinder=ButterKnife.bind(this,view)
+        title = view.findViewById(R.id.title)
+        mMessageView = view.findViewById(R.id.message_view)
+        mMainContainer = view.findViewById(R.id.containerView)
         mServerErrorView = view.findViewById(R.id.ServerError)
         mNetworkErrorView = view.findViewById(R.id.networkError)
         mProgressView = view.findViewById(R.id.progressView)
         mEmptyview = view.findViewById(R.id.empty_view)
         btnRetry = view.findViewById(R.id.retry)
+        mRecyclerView = view.findViewById(R.id.commonrecyclerview)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
+        val layoutManager = getLayoutManager()
+        mRecyclerView?.setLayoutManager(layoutManager)
     }
 
 
+    override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }
+
+
+    fun getRecyclerView(): RecyclerView {
+        return mRecyclerView
+    }
 
     protected fun getLayoutManager(): LinearLayoutManager {
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -110,6 +127,8 @@ abstract class BaseFragment : Fragment(), BaseView, View.OnClickListener {
 
     override fun showLoading() {
         mEmptyview?.visibility = View.GONE
+        mMessageView?.setVisibility(View.GONE)
+        mMainContainer?.setVisibility(View.GONE)
         mNetworkErrorView?.setVisibility(View.GONE)
         mServerErrorView?.setVisibility(View.GONE)
         mProgressView?.setVisibility(View.VISIBLE)
@@ -119,29 +138,39 @@ abstract class BaseFragment : Fragment(), BaseView, View.OnClickListener {
     override fun showMessage(message: String?) {
         mEmptyview?.visibility = View.GONE
         mProgressView?.setVisibility(View.GONE)
+        mMainContainer?.setVisibility(View.GONE)
+        mMessageView?.setVisibility(View.VISIBLE)
         mServerErrorView?.setVisibility(View.GONE)
         mNetworkErrorView?.setVisibility(View.GONE)
+
+        mMessageView?.setText(message)
     }
 
     override fun showMessage(@StringRes resId: Int) {
-        mActivity?.showError(resId)
+        mMessageView?.setText(getString(resId))
         mEmptyview?.visibility = View.GONE
         mProgressView?.setVisibility(View.GONE)
+        mMainContainer?.setVisibility(View.GONE)
         mServerErrorView?.setVisibility(View.GONE)
         mNetworkErrorView?.setVisibility(View.GONE)
+        mMessageView?.setVisibility(View.VISIBLE)
 
     }
 
     override fun onShowContent(view: View?) {
         mEmptyview?.visibility = View.GONE
+        mMessageView?.setVisibility(View.GONE)
         mProgressView?.setVisibility(View.GONE)
         mServerErrorView?.setVisibility(View.GONE)
         mNetworkErrorView?.setVisibility(View.GONE)
+        mMainContainer?.setVisibility(View.VISIBLE)
     }
 
     override fun showServerError() {
         mEmptyview?.visibility = View.GONE
+        mMessageView?.setVisibility(View.GONE)
         mProgressView?.setVisibility(View.GONE)
+        mMainContainer?.setVisibility(View.GONE)
         mNetworkErrorView?.setVisibility(View.GONE)
         mServerErrorView?.setVisibility(View.VISIBLE)
         btnRetry.setOnClickListener(this)
@@ -150,6 +179,7 @@ abstract class BaseFragment : Fragment(), BaseView, View.OnClickListener {
     override fun showNetworkError() {
         mEmptyview?.visibility = View.GONE
         mProgressView?.setVisibility(View.GONE)
+        mMainContainer?.setVisibility(View.GONE)
         mServerErrorView?.setVisibility(View.GONE)
         mNetworkErrorView?.setVisibility(View.VISIBLE)
         btnRetry.setOnClickListener(this)
@@ -158,6 +188,8 @@ abstract class BaseFragment : Fragment(), BaseView, View.OnClickListener {
     override fun showNoData() {
         mNetworkErrorView?.setVisibility(View.GONE)
         mServerErrorView?.setVisibility(View.GONE)
+        mMainContainer?.setVisibility(View.GONE);
+        mMessageView?.setVisibility(View.GONE)
         mProgressView?.setVisibility(View.GONE)
         mEmptyview?.visibility = View.VISIBLE
     }
@@ -193,10 +225,8 @@ abstract class BaseFragment : Fragment(), BaseView, View.OnClickListener {
 
 
 
-
     override fun onDestroyView() {
         super.onDestroyView()
-        munbinder?.unbind()
     }
 
     override fun onDetach() {

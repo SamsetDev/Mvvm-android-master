@@ -1,16 +1,12 @@
 package com.samset.mvvm.mvvmsampleapp.remote.service.repository
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.samset.mvvm.mvvmsampleapp.remote.ResponseObserver
 import com.samset.mvvm.mvvmsampleapp.remote.service.model.Project
-import com.samset.mvvm.mvvmsampleapp.remote.vo.UI_STATUS
+import com.samset.mvvm.mvvmsampleapp.utils.UI_STATUS
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -20,52 +16,55 @@ class ProjectRepository
 constructor(private val gitHubService: GitHubService, private val disposable: CompositeDisposable) {
 
 
-    fun getProjectListWithErrorHandle(userId: String,data:MutableLiveData<ArrayList<Project>>, status: MutableLiveData<UI_STATUS>){
+    fun getProjectListWithErrorHandle(userId: String, data: MutableLiveData<ArrayList<Project>>, status: MutableLiveData<UI_STATUS>) {
 
-        status.value=UI_STATUS.LOADING
+        status.value = UI_STATUS.LOADING
         gitHubService.getProjectList(userId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : ResponseObserver<Response<ArrayList<Project>>>(disposable) {
+                .subscribe(object : ResponseObserver<ArrayList<Project>>(disposable) {
+
+                    override fun onSuccess(value: ArrayList<Project>?) {
+                        status.value = UI_STATUS.SUCCESS
+                        data.postValue(value)
+                    }
+
+                    override fun onNoData() {
+                        status.value = UI_STATUS.NO_DATA
+                    }
 
                     override fun onNetworkError(e: Throwable) {
-                        status.value=UI_STATUS.NETWORK_ERROR
+                        status.value = UI_STATUS.NETWORK_ERROR
                     }
 
                     override fun onServerError(e: Throwable, code: Int) {
-                        status.value=UI_STATUS.SERVER_ERROR
+                        status.value = UI_STATUS.SERVER_ERROR
                     }
 
-                    override fun onNext(response: Response<ArrayList<Project>>) {
-                        status.value=UI_STATUS.SUCCESS
-                        data.postValue(response.body())
-                    }
                 })
 
     }
 
-    fun getProjectDetails(userID: String, projectName: String): LiveData<Project> {
-        val data = MutableLiveData<Project>()
+    fun getProjectDetails(username: String, reponame: String, data: MutableLiveData<Project>, status: MutableLiveData<UI_STATUS>) {
 
-        gitHubService.getProjectDetails(userID, projectName).enqueue(object : Callback<Project> {
-            override fun onResponse(call: Call<Project>, response: Response<Project>) {
-                simulateDelay()
-                data.value = response.body()
-            }
+        status.value = UI_STATUS.LOADING
+        gitHubService.getProjectDetails(username, reponame).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : ResponseObserver<Project>(disposable) {
+                    override fun onSuccess(response: Project?) {
+                        status.value = UI_STATUS.SUCCESS
+                        data.postValue(response)
+                    }
 
-            override fun onFailure(call: Call<Project>, t: Throwable) {
-                // TODO better error handling in part #2 ...
-                data.value = null
-            }
-        })
+                    override fun onNoData() {
+                        status.value = UI_STATUS.NO_DATA
+                    }
 
-        return data
-    }
+                    override fun onNetworkError(e: Throwable) {
+                        status.value = UI_STATUS.NETWORK_ERROR
+                    }
 
-    private fun simulateDelay() {
-        try {
-            Thread.sleep(10)
-        } catch (e: InterruptedException) {
-            e.printStackTrace()
-        }
+                    override fun onServerError(e: Throwable, code: Int) {
+                        status.value = UI_STATUS.SERVER_ERROR
+                    }
+                })
 
     }
 
