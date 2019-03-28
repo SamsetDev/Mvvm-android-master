@@ -3,7 +3,7 @@ The main purpose of this app is to show MVVM sample implementation using the new
 components LiveData and ViewModel.
 
 <h2> Native Android component refrences</h2>
-    ->Jetpack  </br>
+    <h4>Jetpack</h4>  </br>
     1: Navigation </br>
     2: Lifecycle </br>
 
