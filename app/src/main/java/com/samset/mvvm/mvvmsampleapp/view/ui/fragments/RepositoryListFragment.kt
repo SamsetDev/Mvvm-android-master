@@ -1,13 +1,5 @@
 package com.samset.mvvm.mvvmsampleapp.view.ui.fragments
 
-/**
- * Copyright (C) Mvvm-android-master - All Rights Reserved
- * Unauthorized copying of this file, via any medium is strictly prohibited Proprietary and confidential.
- *
- *
- * Created by samset on 25/03/19 at 4:43 PM for Mvvm-android-master .
- */
-
 
 import android.util.Log
 import android.view.View
