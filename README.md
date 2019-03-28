@@ -2,7 +2,7 @@
 The main purpose of this app is to show MVVM sample implementation using the new Google Architectural
 components LiveData and ViewModel.
 
-<h2> Native Android component repfrences</h2>
+<h2> Native Android component refrences</h2>
     ->Jetpack  </br>
     1: Navigation </br>
     2: Lifecycle </br>
